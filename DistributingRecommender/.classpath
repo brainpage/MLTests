@@ -56,5 +56,8 @@
 	<classpathentry kind="lib" path="/home/yf/work/hadoop-1.0.4/lib/xmlenc-0.52.jar"/>
 	<classpathentry kind="lib" path="/home/yf/work/mahout-distribution-0.7/math/target/mahout-math-0.7.jar"/>
 	<classpathentry kind="lib" path="/home/yf/work/mahout-distribution-0.7/core/target/mahout-core-0.7.jar"/>
+	<classpathentry kind="lib" path="/home/yf/Downloads/google-collect-snapshot-20080530.jar"/>
+	<classpathentry kind="lib" path="/home/yf/Downloads/metrics.serialization-all-2.0.0-pre2-jar-with-dependencies.jar"/>
+	<classpathentry kind="lib" path="/home/yf/Downloads/guava-13.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

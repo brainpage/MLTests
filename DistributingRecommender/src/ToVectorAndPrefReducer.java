@@ -22,6 +22,8 @@ public class ToVectorAndPrefReducer extends Reducer<IntWritable,VectorOrPrefWrit
 				prefs.add(value.getValue());
 			}
 		}
+		VectorAndPrefsWritable forprint = new VectorAndPrefsWritable(v,userfs,prefs);
+		System.out.println(key.get() + ":" + forprint.toString() );
 		context.write(key, new VectorAndPrefsWritable(v,userfs,prefs));
 	}
 }

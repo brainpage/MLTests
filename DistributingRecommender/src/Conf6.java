@@ -4,30 +4,34 @@ import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.SequenceFileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
+import org.apache.mahout.cf.taste.hadoop.RecommendedItemsWritable;
 import org.apache.mahout.math.VectorWritable;
 
-public class Conf1 {
+public class Conf6 {
 
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		Configuration conf = new Configuration();
-		Job job = new Job(conf, "job1");
+		Job job = new Job(conf, "job6");
+		job.setInputFormatClass(SequenceFileInputFormat.class);
 		job.setOutputFormatClass(SequenceFileOutputFormat.class);
 		
-		FileInputFormat.addInputPath(job, new Path(
-				"/home/yf/work/hadoopcodes/input/webdata.txt"));
+		SequenceFileInputFormat.addInputPath(job, new Path(
+				"/home/yf/work/hadoopcodes/output/output5/part-r-00000"));
 																	
 		SequenceFileOutputFormat.setOutputPath(job, new Path(
-				"/home/yf/work/hadoopcodes/output/output1"));		
+				"/home/yf/work/hadoopcodes/output/output6"));		
 
-		job.setMapperClass(ToItemPrefsMapper.class);
+		job.setMapperClass(PartialMultiplyMapper.class);
 		job.setMapOutputKeyClass(LongWritable.class);
-		job.setMapOutputValueClass(LongWritable.class);		
+		job.setMapOutputValueClass(VectorWritable.class);	
 		
-		job.setReducerClass(ToUserVectorReducer.class);
+		job.setCombinerClass(AggregateCombiner.class);
+		
+		job.setReducerClass(AggregateAndRecommendReducer.class);
 		job.setOutputKeyClass(LongWritable.class);
-		job.setOutputValueClass(VectorWritable.class);  
+		job.setOutputValueClass(RecommendedItemsWritable.class);  
 		
         job.submit();
 

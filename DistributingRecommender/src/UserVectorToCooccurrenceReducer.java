@@ -24,6 +24,7 @@ public class UserVectorToCooccurrenceReducer extends
 			cooccurrenceRow.set(itemIndex2,
 					cooccurrenceRow.get(itemIndex2) + 1.0);
 		}
+		System.out.println(itemIndex1.get() + ":" + cooccurrenceRow.asFormatString());
 		context.write(itemIndex1, new VectorWritable(cooccurrenceRow));
 	}
 }

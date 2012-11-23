@@ -8,17 +8,17 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.mahout.cf.taste.hadoop.item.VectorOrPrefWritable;
-import org.apache.mahout.math.VarLongWritable;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
 
 public class UserVectorSplitterMapper
 		extends
-		Mapper<VarLongWritable, VectorWritable, IntWritable, VectorOrPrefWritable> {
+		Mapper<LongWritable, VectorWritable, IntWritable, VectorOrPrefWritable> {
 
-	public void map(VarLongWritable key, VectorWritable value, Context context)
+	public void map(LongWritable key, VectorWritable value, Context context)
 			throws IOException, InterruptedException {
 		long userID = key.get();
 		Vector userVector = value.get();

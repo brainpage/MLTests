@@ -14,20 +14,20 @@ import java.util.PriorityQueue;
 import java.util.Queue;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.mahout.cf.taste.hadoop.RecommendedItemsWritable;
 import org.apache.mahout.cf.taste.hadoop.TasteHadoopUtils;
 import org.apache.mahout.cf.taste.impl.recommender.ByValueRecommendedItemComparator;
 import org.apache.mahout.cf.taste.impl.recommender.GenericRecommendedItem;
 import org.apache.mahout.cf.taste.recommender.RecommendedItem;
-import org.apache.mahout.math.VarLongWritable;
 import org.apache.mahout.math.Vector;
 import org.apache.mahout.math.VectorWritable;
 import org.apache.mahout.math.map.OpenIntLongHashMap;
 
 public class AggregateAndRecommendReducer
 		extends
-		Reducer<VarLongWritable, VectorWritable, VarLongWritable, RecommendedItemsWritable> {
+		Reducer<LongWritable, VectorWritable, LongWritable, RecommendedItemsWritable> {
 
 	private int recommendationsPerUser = 10;
 	private OpenIntLongHashMap indexItemIDMap;
@@ -43,7 +43,7 @@ public class AggregateAndRecommendReducer
 				jobConf.get(ITEMID_INDEX_PATH), jobConf);
 	}
 
-	public void reduce(VarLongWritable key, Iterable<VectorWritable> values,
+	public void reduce(LongWritable key, Iterable<VectorWritable> values,
 			Context context) throws IOException, InterruptedException {
 
 		Vector recommendationVector = null;
