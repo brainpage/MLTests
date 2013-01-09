@@ -1,0 +1,9 @@
+Clustering
+
+1. uniclickdata/ data_processing.pig
+Use it to deal with inputWithinTheSameCampaign.dat.
+The result will be stored in fuzzykmeans/uniclickdata/groupByUserID.
+
+2.fuzzykmeans/FuzzyKMeansWithTanicoForUniclick.java
+Use it to do clustering. (I do it in Eclipse).
+The result will be stored in uniclickoutput1.

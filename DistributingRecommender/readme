@@ -1,0 +1,9 @@
+This is an Eclipse project, here's the way to run it:
+1. Put it into a eclispe project.
+2. Add external jars.
+3. Set the input and ouput path for each MapReduce on file like NConf*.java.
+4. Run 'MakeARecommender.java'.
+
+Or you can just run class RecommenderJob in Mahout using command line, like this:
+
+hadoop jar /usr/lib/mahout/mahout-core-0.7-cdh4.1.1-job.jar org.apache.mahout.cf.taste.hadoop.item.RecommenderJob --input /user/app/test/webdata.csv --output /user/app/test/output --similarityClassname org.apache.mahout.math.hadoop.similarity.cooccurrence.measures.TanimotoCoefficientSimilarity 
